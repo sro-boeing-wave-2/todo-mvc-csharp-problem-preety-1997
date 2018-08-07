@@ -34,11 +34,11 @@ namespace GoogleKeep
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddScoped<INoteService, NoteService>();
-			
-			//services.AddDbContext<NotesContext>(opts =>
-			//  opts.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+			    
+		
 			services.AddDbContext<NotesContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("NotesContext")));
+			
 
 			services.AddSwaggerGen(c =>
 			{
