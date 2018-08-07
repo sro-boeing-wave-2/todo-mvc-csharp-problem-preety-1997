@@ -77,7 +77,7 @@ namespace GoogleKeep.Controllers
 				}
 			}
 
-			return NoContent();
+			return Ok(notes);
 		}
 
 		// POST: api/Notes
@@ -108,7 +108,7 @@ namespace GoogleKeep.Controllers
 				return NotFound();
 			}
 
-			return Ok(notes);
+			return Ok();
 		}
 
 		// DELETE: api/Notes/?{query}
