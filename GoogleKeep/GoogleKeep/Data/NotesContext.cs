@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace GoogleKeep.Models
+namespace GoogleKeep.Data
 {
     public class NotesContext : DbContext
     {
