@@ -1,5 +1,5 @@
 language: csharp
-solution: GoogleKeep.sln
+solution: GGoogleKeep/GoogleKeep.sln
 notifications:
   email:
     on_success: always
@@ -10,3 +10,4 @@ dotnet: 2.1
 script:
   - dotnet restore
   - dotnet test TestNotes
+  - dotnet test NotesIntegrationTests
