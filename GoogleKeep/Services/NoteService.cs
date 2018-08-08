@@ -58,6 +58,7 @@ namespace GoogleKeep.Services
 			return notes;
 		}
 
+
 		public async Task<IEnumerable<Note>> DeleteNotes([FromQuery] string title)
 		{
 			var notes = await _context.Note.Include(x => x.ChecklistList).Include(x => x.LabelsList).Where(x => (x.Title == title)).ToListAsync();

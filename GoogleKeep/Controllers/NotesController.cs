@@ -108,7 +108,7 @@ namespace GoogleKeep.Controllers
 				return NotFound();
 			}
 
-			return Ok();
+			return NoContent() ;
 		}
 
 		// DELETE: api/Notes/?{query}
@@ -125,7 +125,7 @@ namespace GoogleKeep.Controllers
 				return NotFound();
 			}
 
-			return Ok(notes);
+			return NoContent();
 		}
 
 		public bool NotesExists(int id)

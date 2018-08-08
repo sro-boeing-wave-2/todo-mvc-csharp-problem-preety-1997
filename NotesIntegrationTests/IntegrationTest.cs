@@ -76,16 +76,16 @@ namespace NotesIntegrationTests
 		Note NotePut = new Note()
 		{
 			Id = 1,
-			Title = " deleted title",
-			Text = "deleted Message",
+			Title = "updating title",
+			Text = "updating Message",
 			ChecklistList = new List<Checklist>()
 						{
-							new Checklist(){ Value = "deleted checklist1", IsChecked = true},
+							new Checklist(){ Value = "updating checklist1", IsChecked = true},
 							new Checklist(){ Value = "deleted checklist2", IsChecked = false}
 						},
 			LabelsList = new List<Labels>()
 						{
-							new Labels(){Value = "deleted label1"},
+							new Labels(){Value = "updating label1"},
 							new Labels(){ Value = "deleted Label2"}
 						},
 			CanbePinned = false
@@ -127,40 +127,66 @@ namespace NotesIntegrationTests
 		[Fact]
 		public async Task Post()
 		{
-			var content = JsonConvert.SerializeObject(NotePost);
-			var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
-			var response = await _client.PostAsync("/api/Notes", stringContent);
-			var responseString = await response.Content.ReadAsStringAsync();
-			var note = JsonConvert.DeserializeObject<Note>(responseString);
-			Console.WriteLine(note.Title);
+			var Notecontent = JsonConvert.SerializeObject(NotePost);
+			var NotestringContent = new StringContent(Notecontent, Encoding.UTF8, "application/json");
+			var response = await _client.PostAsync("/api/Notes", NotestringContent);
+			var responseData = await response.Content.ReadAsStringAsync();
+			var note = JsonConvert.DeserializeObject<Note>(responseData);
+			Console.WriteLine("post Data" + note.Title +"Post Data Id"+ note.Id);
 			Assert.Equal(HttpStatusCode.Created, response.StatusCode);			
 		}
 		[Fact]
 		public async Task GetAll()
 		{
 			var response = await _client.GetAsync("/api/Notes");
-			var responseString = await response.Content.ReadAsStringAsync();
-			var notes = JsonConvert.DeserializeObject<List<Note>>(responseString);
+			var responseData = await response.Content.ReadAsStringAsync();
+			var notes = JsonConvert.DeserializeObject<List<Note>>(responseData);
+			notes.ForEach(x => Console.WriteLine("getting data Id" + x.Id + "getting Data Title " + x.Title));
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 		}
 		[Fact]
 		public async Task GetById()
 		{
 			var response = await _client.GetAsync("/api/Notes/1");
-			var responseString = await response.Content.ReadAsStringAsync();
-			var notes = JsonConvert.DeserializeObject<Note>(responseString);
+			var responseData = await response.Content.ReadAsStringAsync();
+			var note = JsonConvert.DeserializeObject<Note>(responseData);
+			//notes.ForEach(x => Console.WriteLine("getting data Id" + x.Id + "getting Data Title " + x.Title));
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-			Assert.Equal("Title1", notes.Title);
+			Assert.Equal("title1",note.Title);
 		}
 		[Fact]
 		public async Task GetByQuery()
 		{
-			var response = await _client.GetAsync("/api/Notes/query?ispinned=true");
-			var responseString = await response.Content.ReadAsStringAsync();
-			var notes = JsonConvert.DeserializeObject<List<Note>>(responseString);
+			var response = await _client.GetAsync("/api/Notes?title=tile1");
+			var responseData = await response.Content.ReadAsStringAsync();
+			var notes = JsonConvert.DeserializeObject<List<Note>>(responseData);
+			//notes.ForEach(x => Console.WriteLine("getting data Id" + x.Id + "getting Data Title " + x.Title));
 			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-			// Assert.Equal("Title-1-Deletable", notes.Title);
+			notes.ForEach(x => Assert.Equal("title1", x.Title));
 		}
-		
+		[Fact]
+		public async Task Put()
+		{
+			var Notecontent = JsonConvert.SerializeObject(NotePut);
+			var NotestringContent = new StringContent(Notecontent, Encoding.UTF8, "application/json");
+			var response = await _client.PutAsync("/api/Notes/1", NotestringContent);
+			var responseData = await response.Content.ReadAsStringAsync();
+			var note = JsonConvert.DeserializeObject<Note>(responseData);
+			//Console.WriteLine("put Data" + note.Title + "Putt Data Id" + note.Id);
+			Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+		}
+		[Fact]
+		public async Task DeleteById()
+		{
+			var response = await _client.DeleteAsync("/api/Notes/1");
+			Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+		}
+		[Fact]
+		public async Task DeleteByTitle()
+		{
+			var response = await _client.DeleteAsync("/api/Notes?title=title1");
+			Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+		}
+
 	}
 }
