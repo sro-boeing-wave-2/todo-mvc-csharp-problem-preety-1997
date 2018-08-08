@@ -1,7 +1,3 @@
-D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.csprojAssemblyReference.cache
-D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.csproj.CoreCompileInputs.cache
-D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.AssemblyInfoInputs.cache
-D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.AssemblyInfo.cs
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
@@ -9,9 +5,13 @@ D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bi
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\TestNotes.runtimeconfig.json
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\TestNotes.runtimeconfig.dev.json
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\TestNotes.dll
+D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\TestNotes.pdb
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\GoogleKeep.dll
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\GoogleKeep.pdb
+D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.csprojAssemblyReference.cache
+D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.csproj.CoreCompileInputs.cache
+D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.AssemblyInfoInputs.cache
+D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.AssemblyInfo.cs
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.csproj.CopyComplete
-D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\bin\Debug\netcoreapp2.1\TestNotes.pdb
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.dll
 D:\workspace\ASP.NET\todo-mvc-csharp-problem-preety-1997\GoogleKeep\TestNotes\obj\Debug\netcoreapp2.1\TestNotes.pdb

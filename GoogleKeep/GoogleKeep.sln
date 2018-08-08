@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleKeep", "GoogleKeep\GoogleKeep.csproj", "{D1AF43CE-B190-44E4-A947-22340B817D18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNotes", "TestNotes\TestNotes.csproj", "{06668993-E175-451C-9066-5899F4D96A6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestNotes", "TestNotes\TestNotes.csproj", "{06668993-E175-451C-9066-5899F4D96A6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotesIntegrationTests", "NotesIntegrationTests\NotesIntegrationTests.csproj", "{0CF8194E-70E6-4843-8009-EF4B75F0C495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{06668993-E175-451C-9066-5899F4D96A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06668993-E175-451C-9066-5899F4D96A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06668993-E175-451C-9066-5899F4D96A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF8194E-70E6-4843-8009-EF4B75F0C495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF8194E-70E6-4843-8009-EF4B75F0C495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF8194E-70E6-4843-8009-EF4B75F0C495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF8194E-70E6-4843-8009-EF4B75F0C495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

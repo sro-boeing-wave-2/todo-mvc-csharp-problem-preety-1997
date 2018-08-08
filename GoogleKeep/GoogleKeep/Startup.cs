@@ -22,22 +22,29 @@ namespace GoogleKeep
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration,IHostingEnvironment currentEnvironment)
         {
             Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+			_currentEnvironment = currentEnvironment;
+		}
+		public IHostingEnvironment _currentEnvironment { get; }
+		public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddScoped<INoteService, NoteService>();
-			    
-		
-			services.AddDbContext<NotesContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("NotesContext")));
+
+			if (_currentEnvironment.IsDevelopment())
+			{
+				services.AddDbContext<NotesContext>(options =>
+						options.UseSqlServer(Configuration.GetConnectionString("NotesContext")));
+			}
+			else {
+				services.AddDbContext<NotesContext>(options =>
+				options.UseInMemoryDatabase("TestDB"));
+			}
 			
 
 			services.AddSwaggerGen(c =>
