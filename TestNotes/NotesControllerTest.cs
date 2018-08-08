@@ -163,12 +163,20 @@ namespace TestNotes
 			Assert.Equal(note,notes);
 		}
 		[Fact]
-		public async void DeleteTest()
+		public  void DeleteTest()
 		{
 			var _controller = GetNotesController();
-			var result = _controller.DeleteNotes(1);
+			var result =  _controller.DeleteNotes(1);
 			Assert.True(result.IsCompletedSuccessfully);
 			
+		}
+		[Fact]
+		public  void DeleteTestByTitle()
+		{
+			var _controller = GetNotesController();
+			var result = _controller.DeleteNotes("bicky");
+			Assert.True(result.IsCompletedSuccessfully);
+
 		}
 
 
