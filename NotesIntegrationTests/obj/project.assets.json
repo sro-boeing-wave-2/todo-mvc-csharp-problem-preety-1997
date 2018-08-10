@@ -10950,11 +10950,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\NotesIntegrationTests\\NotesIntegrationTests.csproj",
+      "projectUniqueName": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\NotesIntegrationTests\\NotesIntegrationTests.csproj",
       "projectName": "NotesIntegrationTests",
-      "projectPath": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\NotesIntegrationTests\\NotesIntegrationTests.csproj",
+      "projectPath": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\NotesIntegrationTests\\NotesIntegrationTests.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\NotesIntegrationTests\\obj\\",
+      "outputPath": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\NotesIntegrationTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10973,8 +10973,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj": {
-              "projectPath": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj"
+            "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj": {
+              "projectPath": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj"
             }
           }
         }

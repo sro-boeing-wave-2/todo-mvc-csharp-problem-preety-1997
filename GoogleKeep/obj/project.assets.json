@@ -12343,11 +12343,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj",
+      "projectUniqueName": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj",
       "projectName": "GoogleKeep",
-      "projectPath": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj",
+      "projectPath": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\GoogleKeep.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\workspace\\ASP.NET\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\obj\\",
+      "outputPath": "D:\\workspace\\todo-mvc-csharp-problem-preety-1997\\GoogleKeep\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
