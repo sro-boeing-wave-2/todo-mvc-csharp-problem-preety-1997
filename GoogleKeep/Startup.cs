@@ -34,15 +34,18 @@ namespace GoogleKeep
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddScoped<INoteService, NoteService>();
 
-			if (_currentEnvironment.IsDevelopment())
-			{
-				services.AddDbContext<NotesContext>(options =>
-						options.UseSqlServer(Configuration.GetConnectionString("NotesContext")));
-			}
-			else
+			if (_currentEnvironment.IsEnvironment("Testing"))
 			{
 				services.AddDbContext<NotesContext>(options =>
 				options.UseInMemoryDatabase("TestDB"));
+				
+			}
+			else
+			{
+				//services.AddDbContext<NotesContext>(options =>
+				//		options.UseSqlServer(Configuration.GetConnectionString("NotesContext")));
+				services.AddDbContext<NotesContext>(options =>
+			   options.UseSqlServer(Configuration.GetConnectionString("NotesContext"), dboptions => dboptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null)));
 			}
 			services.AddSwaggerGen(c =>
 			{
@@ -53,7 +56,7 @@ namespace GoogleKeep
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env ,NotesContext context)
 		{
 			if (env.IsDevelopment())
 			{
@@ -75,6 +78,7 @@ namespace GoogleKeep
 			});
 			app.UseHttpsRedirection();
 			app.UseMvc();
+			context.Database.Migrate();
 		}
 	}
 }
