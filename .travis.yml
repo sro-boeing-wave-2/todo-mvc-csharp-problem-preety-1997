@@ -9,5 +9,5 @@ mono: none
 dotnet: 2.1
 script:
   - dotnet restore
-  - dotnet test TestNotes
-  - dotnet test NotesIntegrationTests
+  #- dotnet test TestNotes
+  #- dotnet test NotesIntegrationTests
