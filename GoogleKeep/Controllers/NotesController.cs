@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GoogleKeep.Models;
 using GoogleKeep.Services;
-
+using MongoDB.Bson;
 
 namespace GoogleKeep.Controllers
 {
@@ -15,6 +15,7 @@ namespace GoogleKeep.Controllers
 	[ApiController]
 	public class NotesController : ControllerBase
 	{
+		
 		INoteService _NotesServices;
 		public NotesController(INoteService notesService)
 		{
@@ -23,22 +24,22 @@ namespace GoogleKeep.Controllers
 
 		//GET: api/Notes or GET: api/Notes?{query}
 		[HttpGet]
-		public async Task<IActionResult> GetNotes([FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned)
+		public  IActionResult GetNotes()
 		{
-			var result = await _NotesServices.GetNotes(title, label, pinned);
+			var result =  _NotesServices.GetNotes();
 			return Ok(result);
 		}
 
 		// GET: api/Notes/5
-		[HttpGet("{id:int}")]
-		public async Task<IActionResult> GetNotesById([FromRoute] int id)
+		[HttpGet("{id:length(24)}")]
+		public  IActionResult GetNoteById([FromRoute] string id)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			var notes = await _NotesServices.GetNotes(id);
+			var notes =  _NotesServices.GetNote(new ObjectId(id));
 
 			if (notes == null)
 			{
@@ -47,91 +48,63 @@ namespace GoogleKeep.Controllers
 
 			return Ok(notes);
 		}
-
-		// PUT: api/Notes/5
-		[HttpPut("{id}")]
-		public async Task<IActionResult> PutNotes([FromRoute] int id, [FromBody] Note notes)
+		[HttpGet]
+		[Route("query")]
+		public IActionResult GetNotesByQuery([FromQuery] bool? Ispinned = null, [FromQuery]string title = "", [FromQuery] string labelName = "")
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
+			var note = _NotesServices.GetNotesByQuery(Ispinned, title, labelName);
+			if (note == null)
+			{
+				return NotFound();
+			}
+			return Ok(note);
+		}
 
-			if (id != notes.Id)
+		[HttpPut("{id:length(24)}")]
+		public IActionResult Put(string id, [FromBody]Note p)
+		{
+			if (!ModelState.IsValid)
 			{
-				return BadRequest();
+				return BadRequest(ModelState);
 			}
-			try
+			var recId = new ObjectId(id);
+			var note = _NotesServices.GetNote(recId);
+			if (note == null)
 			{
-				await _NotesServices.PutNotes(id, notes);
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!NotesExists(id))
-				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
+				return NotFound();
 			}
 
-			return Ok(notes);
+			_NotesServices.Update(recId, p);
+			return new OkResult();
 		}
 
 		// POST: api/Notes
 		[HttpPost]
-		public async Task<IActionResult> PostNotes([FromBody] Note notes)
+		public IActionResult Post([FromBody]Note p)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
-
-			await _NotesServices.PostNotes(notes);
-
-			return CreatedAtAction("GetNotesById", new { id = notes.Id }, notes);
+			_NotesServices.Create(p);
+			return Ok(p);
 		}
 
-		// DELETE: api/Notes/5
-		[HttpDelete("{id}")]
-		public async Task<IActionResult> DeleteNotes([FromRoute] int id)
+		[HttpDelete("{id:length(24)}")]
+		public IActionResult Delete(string id)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-			var notes = await _NotesServices.DeleteNotes(id);
-			if (notes == null)
+			var note = _NotesServices.GetNote(new ObjectId(id));
+			if (note == null)
 			{
 				return NotFound();
 			}
 
-			return NoContent() ;
-		}
-
-		// DELETE: api/Notes/?{query}
-		[HttpDelete]
-		public async Task<IActionResult> DeleteNotes([FromQuery] string title)
-		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest(ModelState);
-			}
-			var notes = await _NotesServices.DeleteNotes(title);
-			if (notes == null)
-			{
-				return NotFound();
-			}
-
-			return NoContent();
-		}
-		[HttpHead]
-		public bool NotesExists(int id)
-		{
-			var result = _NotesServices.NotesExists(id);
-			return result;
+			_NotesServices.Remove(note.Id);
+			return Ok();
 		}
 	}
 

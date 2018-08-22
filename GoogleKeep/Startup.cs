@@ -13,7 +13,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using GoogleKeep.Models;
 using GoogleKeep.Services;
-using GoogleKeep.Data;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace GoogleKeep
@@ -28,35 +27,23 @@ namespace GoogleKeep
 		public IHostingEnvironment _currentEnvironment { get; }
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddScoped<INoteService, NoteService>();
-
-			if (_currentEnvironment.IsEnvironment("Testing"))
-			{
-				services.AddDbContext<NotesContext>(options =>
-				options.UseInMemoryDatabase("TestDB"));
-				
-			}
-			else
-			{
-				//services.AddDbContext<NotesContext>(options =>
-				//		options.UseSqlServer(Configuration.GetConnectionString("NotesContext")));
-				services.AddDbContext<NotesContext>(options =>
-			   options.UseSqlServer(Configuration.GetConnectionString("NotesContext"), dboptions => dboptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null)));
-			}
+			
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
 			});
-
-
+			services.AddCors(corsOptions => corsOptions.AddPolicy("AppPolicy", builder =>
+			   builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+			
+			services.AddTransient<NoteService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env ,NotesContext context)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -76,9 +63,10 @@ namespace GoogleKeep
 			{
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
 			});
+			app.UseCors("AppPolicy");
 			app.UseHttpsRedirection();
 			app.UseMvc();
-			context.Database.Migrate();
+			
 		}
 	}
 }

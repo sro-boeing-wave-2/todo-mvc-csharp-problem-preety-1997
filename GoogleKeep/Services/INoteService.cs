@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using GoogleKeep.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
 
 namespace GoogleKeep.Services
 {
 	public interface INoteService
 	{
-		Task<IEnumerable<Note>> GetNotes([FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned);
-		Task<Note> GetNotes([FromRoute] int id);
-		Task<Note> PutNotes([FromRoute] int id, [FromBody] Note notes);
-		Task<Note> PostNotes([FromBody] Note notes);
-		Task<Note> DeleteNotes([FromRoute] int id);
-		Task<IEnumerable<Note>> DeleteNotes([FromQuery] string title);
-		bool NotesExists(int id);
+		IEnumerable<Note> GetNotes();
+		IEnumerable<Note> GetNotesByQuery(bool? Ispinned =null , string title ="" , string labelName ="");
+		Note GetNote(ObjectId id);
+		Note Create(Note note);
+		void Update(ObjectId id, Note note);
+		void Remove(ObjectId id);
 	}
 }
